@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <div className="py-2 border-b">
       <div className="container flex items-center mx-auto">
-        <h3 className="me-28 font-bold text-xl">HealtyFood</h3>
+        <h3 className="me-28 font-bold text-xl text-green-800">HealtyFood</h3>
         <NavigationMenu className="ms-auto">
           <NavigationMenuList>
             {routes.map(
@@ -42,16 +42,16 @@ export default function Navbar() {
                 <NavigationMenuItem key={route.name} className="me-[1.4rem_!important]">
                   <Link
                     href={route.href}
-                    className={cn(currentRoute === route.href && 'text-blue-500', 'font-medium')}
+                    className={cn(currentRoute === route.href && 'text-green-600', 'font-medium')}
                     >{route.name}</Link>  
                 </NavigationMenuItem>
             )}
             <NavigationMenuItem>
-              <Button className="px-6 me-4">Login</Button>
+              <Button className="px-6 me-4 bg-green-800 hover:bg-green-700">Login</Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <button className="relative">
-                <span className="absolute px-2 py-0.5 bg-blue-400 top-0 text-white text-xs rounded-full">0</span>
+                <span className="absolute px-2 py-0.5 bg-yellow-500 top-0 text-white text-xs rounded-full">0</span>
                 <BsBag size={25}/>
               </button>
             </NavigationMenuItem>
