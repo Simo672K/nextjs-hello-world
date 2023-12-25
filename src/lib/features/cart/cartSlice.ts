@@ -13,7 +13,7 @@ type CartItem = {
 // Define a type for the slice state
 interface CartState {
   items: Array<CartItem>;
-  numberOfCartItems: 0;
+  numberOfCartItems: number;
 }
 
 // Define the initial state using that type

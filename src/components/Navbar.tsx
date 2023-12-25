@@ -9,6 +9,7 @@ import { Button } from "./ui/button";
 import { BsBag } from "react-icons/bs";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import Cart from "@/components/Cart";
 
 export default function Navbar() {
   const currentRoute= usePathname();
@@ -50,10 +51,7 @@ export default function Navbar() {
               <Button className="px-6 me-4 bg-green-800 hover:bg-green-700">Login</Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <button className="relative">
-                <span className="absolute px-2 py-0.5 bg-yellow-500 top-0 text-white text-xs rounded-full">0</span>
-                <BsBag size={25}/>
-              </button>
+              <Cart/>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
+import StoreProvider from "@/app/StoreProvide";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,10 @@ export default function RootLayout({
   return (
     <html className="h-full" lang="en">
       <body className={cn(inter.className, "h-full")}>
-        <Navbar />
-        {children}
+        <StoreProvider>
+          <Navbar />
+          {children}
+        </StoreProvider>
       </body>
     </html>
   );
