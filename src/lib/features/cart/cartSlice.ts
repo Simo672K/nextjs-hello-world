@@ -1,12 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "@/lib/store";
-import { StaticImageData } from "next/image";
 
 type CartItem = {
   id: number;
-  title: string;
-  image: StaticImageData;
+  itemName: string;
+  image: string;
   quantity: number;
 };
 
