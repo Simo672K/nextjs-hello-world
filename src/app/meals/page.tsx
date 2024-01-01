@@ -51,17 +51,9 @@ function Meals() {
                 reviewsNumber={meal.reviewsNumber}
                 nutritionData={meal.nutritionData}
               />
-            ))
-            
-            }
-            {
-              meals &&
-                <div className="mt-8">
-                  <MealsPagination length={meals.length} active={1}/>
-                </div>
-            }
+            ))}
+          {meals && <MealsPagination length={meals.length} active={7} />}
         </div>
-
       </Section>
       <Footer />
     </Container>

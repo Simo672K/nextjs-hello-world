@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image, { StaticImageData } from "next/image";
-import { FaStar } from "react-icons/fa6";
+import { FaStar, FaPlus } from "react-icons/fa6";
 
 type MealCardProps = {
   id: number;
@@ -64,7 +64,7 @@ function MealCard({
             {nutritionData?.fat}g<p className="text-gray-600 font-light">fat</p>
           </div>
         </div>
-        <Button className="w-full">Add to cart</Button>
+        <Button className="w-full"><FaPlus className='me-2' size={18}/> Add to cart</Button>
       </CardContent>
     </Card>
   );
