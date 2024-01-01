@@ -14,6 +14,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import PlaneImage from "@/app/assets/plane_placeholder.jpg";
+import { Badge } from "@/components/ui/badge"
 
 type PlaneSubsForm = {
   mpp: string;
@@ -154,7 +155,7 @@ function PlaneSubscriptionForm() {
               <div className="flex items-baseline space-x-2 mb-2">
                 <RadioGroupItem value="option-one" id="option-one" />
                 <div className="grow">
-                  <Label htmlFor="option-one">Option One</Label>
+                  <Label htmlFor="option-one">Weekly Subscription <Badge className="bg-green-200 hover:bg-green-200 text-green-700 text-xs font-light">Most popular</Badge></Label>
                   <p className="text-gray-400 font-light text-xs">
                     Save up to 10%, swap meals, skip, or cancel with ease. 
                   </p>
@@ -163,7 +164,7 @@ function PlaneSubscriptionForm() {
               <div className="flex items-baseline space-x-2">
                 <RadioGroupItem value="option-two" id="option-two" />
                 <div className="grow">
-                  <Label className="mb-0" htmlFor="option-two">Option Two</Label>
+                  <Label className="mb-0" htmlFor="option-two">One-time Program</Label>
                   <p className="text-gray-400 font-light text-xs">
                     Get a taste of the Atlanta Meal Prep. 
                   </p>
