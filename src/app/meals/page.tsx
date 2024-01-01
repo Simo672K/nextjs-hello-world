@@ -31,7 +31,7 @@ function Meals() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetch(proxie + "meals");
+      const result = await fetch(proxie + "meals", {cache: 'force-cache'});
       result.json().then((response) => setMeals(_.chunk(response, 12)));
     };
     fetchData();

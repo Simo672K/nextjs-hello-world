@@ -22,7 +22,7 @@ type PlaneSubsForm = {
 
 function PlaneSubscriptionForm() {
   const { register, handleSubmit } = useForm<PlaneSubsForm>();
-  const onSubmit: SubmitHandler<PlaneSubsForm> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<PlaneSubsForm> = (data) => (data);
 
   return (
     <div className="flex w-full gap-6">

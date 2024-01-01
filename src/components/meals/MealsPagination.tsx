@@ -14,7 +14,6 @@ type MealsPaginationProps = {
 };
 
 function MealsPagination({ length, active }: MealsPaginationProps) {
-  console.log(active);
   return (
     <Pagination className="mt-8">
       <PaginationContent>

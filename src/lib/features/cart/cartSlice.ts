@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "@/lib/store";
+import { StaticImageData } from "next/image";
 
 type CartItem = {
   id: number;
   itemName: string;
-  image: string;
+  image: string | StaticImageData;
   quantity: number;
 };
 
@@ -28,23 +29,23 @@ export const cartSlice = createSlice({
   reducers: {
     addItem: (state, action: PayloadAction<CartItem>) => {
       state.items.push(action.payload);
-      state.numberOfCartItems++;
+      state.numberOfCartItems= state.numberOfCartItems+1;
     },
     deleteItem: (state, action: PayloadAction<CartItem>) => {
       state.items.filter(item=> item.id !== action.payload.id);
-      state.numberOfCartItems++;
+      state.numberOfCartItems= state.numberOfCartItems-1;
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementItemQuantity: (state, action: PayloadAction<number>) => {
       const item= state.items.find(item=> item.id === action.payload) as CartItem;
-      item.quantity++;
-      state.numberOfCartItems++;
+      item.quantity= item.quantity+1;
+      state.numberOfCartItems= state.numberOfCartItems + 1;
       
     },
     decrementItemQuantity: (state, action: PayloadAction<number>) => {
       const item= state.items.find(item=> item.id === action.payload) as CartItem;
-      item.quantity--;
-      state.numberOfCartItems++;
+      item.quantity= item.quantity-1;
+      state.numberOfCartItems= state.numberOfCartItems-1;
       
     },
     resetCart: (state) =>{

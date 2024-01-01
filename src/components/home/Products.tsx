@@ -10,18 +10,21 @@ function Products() {
       imageAlt: "Image could not be loaded",
       title: "Healthy Mix",
       description: "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.",
+      href:'/get-started/your-plans',
     },
     {
       imageSrc: Meal,
       imageAlt: "Image could not be loaded",
       title: "Keto",
       description: "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.",
+      href:'/get-started/your-plans',
     },
     {
       imageSrc: Meal,
       imageAlt: "Image could not be loaded",
       title: "Paleo",
       description: "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.",
+      href:'/get-started/your-plans',
     },
   ]
   return (
@@ -31,7 +34,7 @@ function Products() {
           {
             productCards.map(
               product=>
-                <ProductsCard key={product.title} imageSrc={product.imageSrc} imageAlt={product.imageAlt} title={product.title} description={product.description}/>
+                <ProductsCard key={product.title} imageSrc={product.imageSrc} imageAlt={product.imageAlt} title={product.title} href={product.href} description={product.description}/>
             )
           }
         </Section>

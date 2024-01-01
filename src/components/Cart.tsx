@@ -9,12 +9,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { BsBag } from "react-icons/bs";
-import { useAppSelector,  } from '@/lib/hooks'
-import {  } from '@/lib/features/cart/cartSlice'
+import { useAppSelector } from '@/lib/hooks'
 
 function Cart() {
   const {items, numberOfCartItems}= useAppSelector((state)=> state.cart);
-
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -30,6 +28,12 @@ function Cart() {
           <h2 className="text-2xl font-light">Your Meal Plan</h2>
           <span className="block text-green-700 text-lg">{numberOfCartItems}</span>
         </SheetHeader>
+        {
+          items.map(
+            item=>
+            <h4 key={item.id}>{item.itemName}</h4>
+          )
+        }
       </SheetContent>
     </Sheet>
   );

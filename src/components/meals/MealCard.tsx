@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image, { StaticImageData } from "next/image";
 import { FaStar, FaPlus } from "react-icons/fa6";
+import { useAppDispatch } from '@/lib/hooks'
+import { addItem } from '@/lib/features/cart/cartSlice'
 
 type MealCardProps = {
   id: number;
@@ -28,6 +30,8 @@ function MealCard({
   category,
   nutritionData,
 }: MealCardProps) {
+
+  const dispatch= useAppDispatch();
 
   return (
     <Card className="shadow-md h-[28rem] flex flex-col">
@@ -64,7 +68,17 @@ function MealCard({
             {nutritionData?.fat}g<p className="text-gray-600 font-light">fat</p>
           </div>
         </div>
-        <Button className="w-full"><FaPlus className='me-2' size={18}/> Add to cart</Button>
+        <Button onClick={()=> dispatch(
+          addItem({
+            id,
+            itemName: mealName,
+            image,
+            quantity: 1
+          })
+        )} className="w-full">
+          <FaPlus className='me-2' size={18}/>
+          Add to cart
+        </Button>
       </CardContent>
     </Card>
   );
