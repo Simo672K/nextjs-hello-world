@@ -7,6 +7,7 @@ import MealsPagination from "@/components/meals/MealsPagination";
 import _ from "lodash";
 import { StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 type MealCardProps = {
   id: number;
@@ -24,6 +25,7 @@ type MealCardProps = {
 };
 
 function Meals() {
+  const pageParam = useSearchParams();
   const [meals, setMeals] = useState<Array<Array<MealCardProps>>>();
   const proxie = "https://65920c1a8cbbf8afa96c7695.mockapi.io/api/v1/";
 
@@ -34,13 +36,19 @@ function Meals() {
     };
     fetchData();
   }, []);
+  let currentPage: unknown = pageParam.get("page");
+  if (!currentPage) {
+    currentPage = 1;
+  }else {
+    currentPage = parseInt(currentPage as string);
+  }
 
   return (
     <Container className="pt-16">
       <Section title="Our weekly menu">
         <div className="grid grid-cols-4 gap-6">
           {meals &&
-            meals[0].map((meal) => (
+            meals[(currentPage as number)-1].map((meal) => (
               <MealCard
                 key={meal.id}
                 id={meal.id}
@@ -52,8 +60,10 @@ function Meals() {
                 nutritionData={meal.nutritionData}
               />
             ))}
-          {meals && <MealsPagination length={meals.length} active={7} />}
         </div>
+        {meals && (
+          <MealsPagination length={meals.length} active={currentPage as number} />
+        )}
       </Section>
       <Footer />
     </Container>

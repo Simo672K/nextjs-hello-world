@@ -14,50 +14,64 @@ type MealsPaginationProps = {
 };
 
 function MealsPagination({ length, active }: MealsPaginationProps) {
-  console.log(length)
+  console.log(active);
   return (
-    <Pagination>
+    <Pagination className="mt-8">
       <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious href="#" />
-        </PaginationItem>
-
-        {(active - 2 >= 1) && (
+        {active - 1 >= 1 && (
           <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
+            <PaginationPrevious href={`?page=${active - 1}`} />
+          </PaginationItem>
         )}
-        {(active - 2 <= length && active === length) && (
+
+        {active - 2 >= 1 && (
           <PaginationItem>
-            <PaginationLink href="#">{active-2}</PaginationLink>
+            <PaginationEllipsis />
+          </PaginationItem>
+        )}
+        {active - 2 <= length && active === length && (
+          <PaginationItem>
+            <PaginationLink href={`?page=${active - 2}`}>
+              {active - 2}
+            </PaginationLink>
           </PaginationItem>
         )}
         {active - 1 >= 1 && (
           <PaginationItem>
-            <PaginationLink href="#">{active-1}</PaginationLink>
+            <PaginationLink href={`?page=${active - 1}`}>
+              {active - 1}
+            </PaginationLink>
           </PaginationItem>
         )}
         <PaginationItem>
-          <PaginationLink href="#">{active}</PaginationLink>
+          <PaginationLink href={`?page=${active}`} isActive>
+            {active}
+          </PaginationLink>
         </PaginationItem>
         {active + 1 <= length && (
           <PaginationItem>
-            <PaginationLink href="#">{active+1}</PaginationLink>
+            <PaginationLink href={`?page=${active + 1}`}>
+              {active + 1}
+            </PaginationLink>
           </PaginationItem>
         )}
-        {(active + 2 <= length && active === 1) && (
+        {active + 2 <= length && active === 1 && (
           <PaginationItem>
-            <PaginationLink href="#">{active+2}</PaginationLink>
+            <PaginationLink href={`?page=${active + 2}`}>
+              {active + 2}
+            </PaginationLink>
           </PaginationItem>
         )}
-        {(active + 2 <= length) && (
+        {active + 2 <= length && (
           <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
         )}
-        <PaginationItem>
-          <PaginationNext href="#" />
-        </PaginationItem>
+        {active + 1 <= length && (
+          <PaginationItem>
+            <PaginationNext href={`?page=${active + 1}`} />
+          </PaginationItem>
+        )}
       </PaginationContent>
     </Pagination>
   );
