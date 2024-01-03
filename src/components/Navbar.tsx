@@ -48,7 +48,7 @@ export default function Navbar() {
                 </NavigationMenuItem>
             )}
             <NavigationMenuItem>
-              <Button className="px-6 me-4 bg-green-800 hover:bg-green-700">Login</Button>
+              <Button className="px-6 me-4 ">Login</Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Cart/>

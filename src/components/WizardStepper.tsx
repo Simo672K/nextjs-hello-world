@@ -7,7 +7,7 @@ type WizardStepperProps = {
   current: number;
 };
 
-function WizardStepper({ steps, current }: WizardStepperProps) {
+function WizardStepper({ steps, current=-1 }: WizardStepperProps) {
 
   return (
     <div className="w-fit">
@@ -19,7 +19,7 @@ function WizardStepper({ steps, current }: WizardStepperProps) {
                   className={cn(
                     "w-8 h-8 rounded-full mb-2 z-20 border-2 text-center pt-0.5",
                     current === index
-                      ? "bg-green-800 text-white border-green-800"
+                      ? "bg-green-600 text-white border-green-600"
                       : "bg-white text-gray-400",
                     index + 1 === steps.length
                       ? ""

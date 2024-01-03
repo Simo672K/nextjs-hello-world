@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/sheet";
 import { BsBag } from "react-icons/bs";
 import { useAppSelector } from '@/lib/hooks'
+import CartItem from "./CartItem";
+import { cn } from "@/lib/utils";
 
 function Cart() {
   const {items, numberOfCartItems}= useAppSelector((state)=> state.cart);
@@ -17,7 +19,7 @@ function Cart() {
     <Sheet>
       <SheetTrigger asChild>
         <button className="relative">
-          <span className="absolute px-2 py-0.5 bg-yellow-500 top-0 text-white text-xs rounded-full">
+          <span className={cn("absolute px-2 py-0.5 text-white text-xs rounded-full top-0", numberOfCartItems ? "bg-green-600" : "bg-yellow-500")}>
             {numberOfCartItems}
           </span>
           <BsBag size={25} />
@@ -31,7 +33,7 @@ function Cart() {
         {
           items.map(
             item=>
-            <h4 key={item.id}>{item.itemName}</h4>
+            <CartItem key={item.id} item={item.itemName} itemId={item.id}/>
           )
         }
       </SheetContent>

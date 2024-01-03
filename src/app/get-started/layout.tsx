@@ -1,3 +1,4 @@
+'use client'
 import Container from "@/components/Container"
 import WizardSteps from "@/components/WizardSteps"
 

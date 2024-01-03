@@ -31,8 +31,8 @@ export const cartSlice = createSlice({
       state.items.push(action.payload);
       state.numberOfCartItems= state.numberOfCartItems+1;
     },
-    deleteItem: (state, action: PayloadAction<CartItem>) => {
-      state.items.filter(item=> item.id !== action.payload.id);
+    deleteItem: (state, action: PayloadAction<number>) => {
+      state.items= state.items.filter(item=> item.id !== action.payload);
       state.numberOfCartItems= state.numberOfCartItems-1;
     },
     // Use the PayloadAction type to declare the contents of `action.payload`

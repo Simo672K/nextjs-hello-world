@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import cartReducer from "@/lib/features/cart/cartSlice"
+import wizardSlice from '@/lib/features/wizard/wizardSlice'
 
 export const makeStore= ()=>{
   return configureStore({
     reducer: {
       cart: cartReducer,
+      wizard: wizardSlice,
     },
   })
 }
