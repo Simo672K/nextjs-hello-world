@@ -4,12 +4,12 @@ import Footer from "@/components/Footer";
 import Section from "@/components/home/Section";
 import MealCard from "@/components/meals/MealCard";
 import MealsPagination from "@/components/meals/MealsPagination";
-import _ from "lodash";
 import { StaticImageData } from "next/image";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useAppDispatch } from "@/lib/hooks";
 import { updateCurrentStep } from "@/lib/features/wizard/wizardSlice";
+import _ from "lodash";
 
 type MealCardProps = {
   id: number;
@@ -51,19 +51,21 @@ function Meals() {
     <Container className="pt-16">
       <Section title="Our weekly menu">
         <div className="grid grid-cols-4 gap-6">
-          {meals &&
-            meals[(currentPage as number)-1].map((meal) => (
-              <MealCard
-                key={meal.id}
-                id={meal.id}
-                mealName={meal.mealName}
-                image={meal.image}
-                category={meal.category}
-                rating={meal.rating}
-                reviewsNumber={meal.reviewsNumber}
-                nutritionData={meal.nutritionData}
-              />
-            ))}
+          <Suspense fallback={<>Loding...</>}>
+            {meals &&
+              meals[(currentPage as number)-1].map((meal) => (
+                <MealCard
+                  key={meal.id}
+                  id={meal.id}
+                  mealName={meal.mealName}
+                  image={meal.image}
+                  category={meal.category}
+                  rating={meal.rating}
+                  reviewsNumber={meal.reviewsNumber}
+                  nutritionData={meal.nutritionData}
+                />
+              ))}
+          </Suspense>
         </div>
         {meals && (
           <MealsPagination length={meals.length} active={currentPage as number} />

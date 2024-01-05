@@ -34,7 +34,7 @@ function MealCard({
   const dispatch= useAppDispatch();
 
   return (
-    <Card className="shadow-md h-[28rem] flex flex-col">
+    <Card className="shadow h-[28rem] flex flex-col">
       <div className="relative border-b grow overflow-hidden">
         <span className="flex items-center absolute top-2 font-medium text-green-700 right-2 border rounded px-3 py-1 bg-white">
           <FaStar />

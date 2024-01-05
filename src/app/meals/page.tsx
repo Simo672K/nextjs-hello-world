@@ -6,10 +6,10 @@ import MealCard from "@/components/meals/MealCard";
 import MealsPagination from "@/components/meals/MealsPagination";
 import _ from "lodash";
 import { StaticImageData } from "next/image";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-type MealCardProps = {
+interface MealCardProps {
   id: number;
   mealName: string;
   image: string | StaticImageData;
@@ -31,24 +31,26 @@ function Meals() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetch(proxie + "meals", {cache: 'force-cache'});
+      const result = await fetch(proxie + "meals", { cache: "force-cache" });
       result.json().then((response) => setMeals(_.chunk(response, 12)));
     };
     fetchData();
   }, []);
-  let currentPage: unknown = pageParam.get("page");
-  if (!currentPage) {
+
+  const getPageParam: string = pageParam.get("page") ?? "1";
+  let currentPage: number = 0;
+  if (!+getPageParam) {
     currentPage = 1;
-  }else {
-    currentPage = parseInt(currentPage as string);
+  } else {
+    currentPage = +getPageParam;
   }
 
   return (
     <Container className="pt-16">
       <Section title="Our weekly menu">
         <div className="grid grid-cols-4 gap-6">
-          {meals &&
-            meals[(currentPage as number)-1].map((meal) => (
+          <Suspense fallback={<>Loading...</>}>
+            {meals && meals[(currentPage as number) - 1].map((meal) => (
               <MealCard
                 key={meal.id}
                 id={meal.id}
@@ -60,9 +62,13 @@ function Meals() {
                 nutritionData={meal.nutritionData}
               />
             ))}
+          </Suspense>
         </div>
         {meals && (
-          <MealsPagination length={meals.length} active={currentPage as number} />
+          <MealsPagination
+            length={meals.length}
+            active={currentPage as number}
+          />
         )}
       </Section>
       <Footer />
